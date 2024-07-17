@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{728E4D79-F5D1-4418-86DD-9839D16D7204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripsDemo.Core", "src\TripsDemo.Core\TripsDemo.Core.csproj", "{60E5FE20-D8D9-4E59-87A5-70BC861782EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripsDemo.Web", "src\TripsDemo.Web\TripsDemo.Web.csproj", "{3211A2B1-4FCC-47AC-B83B-BBDE8B053CAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60E5FE20-D8D9-4E59-87A5-70BC861782EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E5FE20-D8D9-4E59-87A5-70BC861782EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E5FE20-D8D9-4E59-87A5-70BC861782EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E5FE20-D8D9-4E59-87A5-70BC861782EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3211A2B1-4FCC-47AC-B83B-BBDE8B053CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3211A2B1-4FCC-47AC-B83B-BBDE8B053CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3211A2B1-4FCC-47AC-B83B-BBDE8B053CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3211A2B1-4FCC-47AC-B83B-BBDE8B053CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{60E5FE20-D8D9-4E59-87A5-70BC861782EB} = {728E4D79-F5D1-4418-86DD-9839D16D7204}
+		{3211A2B1-4FCC-47AC-B83B-BBDE8B053CAE} = {728E4D79-F5D1-4418-86DD-9839D16D7204}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14899938-7BAD-4EBC-B09C-CD551286DF64}
+	EndGlobalSection
+EndGlobal
