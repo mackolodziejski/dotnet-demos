@@ -1,6 +1,12 @@
 @TripsDemo_HostAddress = http://localhost:5046
+@id = 1
 
-POST {{TripsDemo_HostAddress}}/trips/
+GET {{TripsDemo_HostAddress}}/trips/
+Accept: application/json
+
+###
+
+GET {{TripsDemo_HostAddress}}/trips/{{id}}
 Accept: application/json
 
 ###

@@ -1,15 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using TripsDemo.Core.Configuration;
 using TripsDemo.Core.Entities;
+using TripsDemo.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
+
+builder.Services.AddDbContext<TripsContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("TripsDb")));
+builder.Services.AddScoped<ITripsContext, TripsContext>();
+builder.Services.AddScoped<ITripsService, TripsService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -18,28 +26,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var countries = new[]
-{
-    "Poland", "Germany", "Spain"
-};
+app.MapGet("/trips", async (ITripsService service) => await service.GetAll());
 
-app.MapPost("/trips", async () => 
+app.MapGet("/trips/{id}", async (int id, ITripsService service) =>
 {
-    await Task.Delay(1);
+    var trip = await service.Get(id);
+    return trip != null ? Results.Ok(trip) : Results.NotFound();
+});
 
-    var forecast =  Enumerable.Range(1, 2).Select(index =>
-        new Trip
-        (
-            countries[Random.Shared.Next(countries.Length)],
-            "city",
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(200, 1000)
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("AddTrip")
-.WithOpenApi();
+app.MapPost("/trips", async (Trip trip, ITripsService service) =>
+{
+    int id = await service.Add(trip);
+    return Results.Created($"/trips/{trip.Id}", trip);
+});
 
 app.Run();
