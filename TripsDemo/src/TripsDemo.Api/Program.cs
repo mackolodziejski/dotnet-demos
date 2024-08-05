@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using TripsDemo.Api.Endpoints;
 using TripsDemo.Core.Configuration;
-using TripsDemo.Core.Entities;
 using TripsDemo.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,18 +26,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/trips", async (ITripsService service) => await service.GetAll());
-
-app.MapGet("/trips/{id}", async (int id, ITripsService service) =>
-{
-    var trip = await service.Get(id);
-    return trip != null ? Results.Ok(trip) : Results.NotFound();
-});
-
-app.MapPost("/trips", async (Trip trip, ITripsService service) =>
-{
-    int id = await service.Add(trip);
-    return Results.Created($"/trips/{trip.Id}", trip);
-});
+app.MapTripsEndpoints();
 
 app.Run();
