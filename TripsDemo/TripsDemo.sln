@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripsDemo.Core", "src\Trips
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TripsDemo.Api", "src\TripsDemo.Api\TripsDemo.Api.csproj", "{77B65F98-94FB-42BE-AE78-9AFBE06C5DD9}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DE7D96AA-75C2-45D0-9B37-A2386E2CE5E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{77B65F98-94FB-42BE-AE78-9AFBE06C5DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77B65F98-94FB-42BE-AE78-9AFBE06C5DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77B65F98-94FB-42BE-AE78-9AFBE06C5DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE7D96AA-75C2-45D0-9B37-A2386E2CE5E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7D96AA-75C2-45D0-9B37-A2386E2CE5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE7D96AA-75C2-45D0-9B37-A2386E2CE5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE7D96AA-75C2-45D0-9B37-A2386E2CE5E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

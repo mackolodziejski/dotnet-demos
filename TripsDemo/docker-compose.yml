@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  tripsdemo.api:
+    image: ${DOCKER_REGISTRY-}tripsdemoapi
+    container_name: tripsdemo.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
+      - ASPNETCORE_HTTPS_PORTS=5001
+    build:
+      context: .
+      dockerfile: src/TripsDemo.Api/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  tripsdemo.database:
+    image: postgres:latest
+    container_name: tripsdemo.database
+    environment:
+      - POSTGRES_DB=tripsdemo
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./.containers/tripsdemo-db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  tripsdemo.pgadmin:
+    container_name: tripsdemo.database.pgadmin
+    image: dpage/pgadmin4
+    depends_on:
+      - tripsdemo.database
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+  tripsdemo.cache:
+    container_name: tripsdemo.cache
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
